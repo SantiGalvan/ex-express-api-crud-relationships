@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 const slugify = require("slugify");
 
 const store = async (req, res) => {
-    const { title, content } = req.body;
+    const { title, content, categoryId, tags } = req.body;
 
     const slug = slugify(title);
 
@@ -12,11 +12,23 @@ const store = async (req, res) => {
         slug,
         image: req.body.image ? req.body.image : '',
         content,
-        published: req.body.published ? true : false
+        published: req.body.published ? true : false,
+        categoryId: categoryId ? categoryId : '',
+        tags: {
+            connect: tags.map(id => ({ id }))
+        }
     }
 
     try {
-        const post = await prisma.post.create({ data });
+        const post = await prisma.post.create({
+            data, include: {
+                tags: {
+                    select: {
+                        label: true
+                    }
+                }
+            }
+        });
         res.status(200).send(post);
     } catch (err) {
         console.error(err);
