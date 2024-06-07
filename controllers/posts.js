@@ -123,9 +123,25 @@ const update = async (req, res) => {
     try {
         const { slug } = req.params;
 
+        const { title, content, categoryId, tags } = req.body;
+
+        const newSlug = slugify(title);
+
+        const data = {
+            title,
+            slug: newSlug,
+            image: req.body.image ? req.body.image : '',
+            content,
+            published: req.body.published ? true : false,
+            categoryId: categoryId ? categoryId : '',
+            tags: {
+                connect: tags.map(id => ({ id }))
+            }
+        }
+
         const post = await prisma.post.update({
             where: { slug },
-            data: req.body
+            data
         });
 
         res.json(post);
