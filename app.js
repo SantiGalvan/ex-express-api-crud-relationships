@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
+const validator = require('../middlewares/validator.js');
 const port = process.env.PORT || 3000;
 const host = process.env.HOST || 'localhost';
 const postsRouter = require("./routers/posts.js");
