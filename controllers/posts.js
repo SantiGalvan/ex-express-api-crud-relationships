@@ -75,11 +75,7 @@ const show = async (req, res) => {
             where: { slug }
         });
 
-        if (post) {
-            res.json(post)
-        } else {
-            throw new Error(`Pizza con slug:${slug} non trovata`);
-        }
+        res.json(post);
 
     } catch (err) {
         console.error(err);
