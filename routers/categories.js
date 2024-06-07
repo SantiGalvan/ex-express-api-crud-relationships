@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 const categoriesController = require("../controllers/categories.js");
 const validator = require('../middlewares/validator.js');
-const { validationCategoryId } = require("../validations/generalValidation.js");
-const bodyData = require("../validations/categories.js");
+const { validationCategoryId, bodyData } = require("../validations/generalValidation.js");
 
 // Store
 router.post('/', validator(bodyData), categoriesController.store);
