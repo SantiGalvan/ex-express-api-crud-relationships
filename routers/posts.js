@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const postsController = require("../controllers/posts.js");
+const validator = require('../middlewares/validator.js');
 
 router.post('/', postsController.store);
 router.get('/', postsController.index);
