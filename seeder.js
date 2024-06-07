@@ -210,6 +210,21 @@ const tags = [
     { id: 10, label: "SQL" }
 ];
 
+// Categorie
+prisma.category.createMany({
+    data: categories
+})
+    .then()
+    .catch(err => console.error(err));
+
+// Tag
+prisma.tag.createMany({
+    data: tags
+})
+    .then()
+    .catch(err => console.error(err));
+
+// Posts
 posts.forEach(post => {
 
     const { id, title, slug, content, categoryId, published, tags } = post;
@@ -227,17 +242,3 @@ posts.forEach(post => {
     prisma.post.create({ data }).then().catch(err => console.error(err));
 
 })
-
-// Categorie
-prisma.category.createMany({
-    data: categories
-})
-    .then()
-    .catch(err => console.error(err));
-
-// Tag
-prisma.tag.createMany({
-    data: tags
-})
-    .then()
-    .catch(err => console.error(err));
