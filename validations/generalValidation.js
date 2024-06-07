@@ -36,4 +36,23 @@ const validationCategoryId = {
     }
 }
 
-module.exports = { validationSlug, validationCategoryId };
+const validationTagId = {
+    id: {
+        in: ["params"],
+        isInt: {
+            errorMessage: "Id deve essere un numero intero"
+        },
+        custom: {
+            options: async (value) => {
+                const id = await prisma.tag.findUnique({ where: { id: parseInt(value) } });
+
+                if (!id) throw new Error(`Non esiste un tag con id:${value}`);
+
+                return true;
+            }
+
+        }
+    }
+}
+
+module.exports = { validationSlug, validationCategoryId, validationTagId };
