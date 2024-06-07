@@ -15,7 +15,7 @@ router.use('/:slug', validator(validationSlug));
 router.get('/:slug', postsController.show);
 // Update con validatore
 router.put('/:slug', validator(bodyData), postsController.update);
-// Destroy
+// Delete
 router.delete('/:slug', postsController.destroy);
 
 module.exports = router;
