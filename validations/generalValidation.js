@@ -73,6 +73,4 @@ const bodyData = {
     },
 }
 
-module.exports = bodyData;
-
 module.exports = { validationSlug, validationCategoryId, validationTagId, bodyData };
