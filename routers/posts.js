@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const postsController = require("../controllers/posts.js");
 const validator = require('../middlewares/validator.js');
-const validationSlug = require("../validations/validationSlug.js");
+const { validationSlug } = require("../validations/generalValidation.js");
 const bodyData = require("../validations/posts.js");
 
 // Store con validatore
